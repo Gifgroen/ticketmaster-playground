@@ -29,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         service.getEvents()
                 .subscribeOn(Schedulers.io())
-                .subscribe(result -> Log.e(TAG, result._embedded.toString()));
+                .subscribe(result -> Log.e(TAG, result.embedded.toString()));
 
-        service.getDetails("vvG1HZfIDE_1YJ").subscribeOn(Schedulers.io())
+        service.getDetails("vv17bZfIGkULDDpa")
+                .subscribeOn(Schedulers.io())
                 .subscribe((event) -> Log.e(TAG, event.toString()));
     }
 }
