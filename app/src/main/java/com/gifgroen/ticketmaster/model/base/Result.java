@@ -11,7 +11,8 @@ public class Result<T> {
     public T _embedded;
     public PageMeta page;
 
+    @Override
     public String toString() {
-        return page + " -> " + _embedded;
+        return Result.class.getSimpleName() + " -> " + _embedded;
     }
 }

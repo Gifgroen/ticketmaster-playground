@@ -9,10 +9,11 @@ import java.util.List;
  * Created by karsten on 08/05/2017.
  */
 
-public class Search extends Result {
+public class EventSearch extends Result {
     List<Event> events;
 
+    @Override
     public String toString() {
-        return events.toString();
+        return EventSearch.class.getSimpleName() + " " + events;
     }
 }

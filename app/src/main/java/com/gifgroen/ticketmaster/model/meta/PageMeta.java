@@ -9,8 +9,4 @@ public class PageMeta {
     int totalElements;
     int totalPages;
     int number;
-
-    public String toString() {
-        return "There are " + totalPages + " pages with size = " + size;
-    }
 }

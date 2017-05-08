@@ -26,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         /* Stub test for Reactive API. */
         Discovery service = Api.createService(Discovery.class);
-        service.getEvents(Api.KEY)
+
+        service.getEvents()
                 .subscribeOn(Schedulers.io())
-                .subscribe((result) -> Log.e(TAG, String.valueOf(result)));
+                .subscribe(result -> Log.e(TAG, result._embedded.toString()));
+
+        service.getDetails("vvG1HZfIDE_1YJ").subscribeOn(Schedulers.io())
+                .subscribe((event) -> Log.e(TAG, event.toString()));
     }
 }
