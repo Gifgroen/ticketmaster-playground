@@ -1,12 +1,8 @@
 package com.gifgroen.ticketmaster.network;
 
-import java.io.IOException;
-
 import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class Api {
     /* Key used to access Ticketmaster's public API(s). */
-    public static final String KEY = "";
+    private static final String KEY = "";
 
     /* URL to Ticketmaster's developer API(s). */
     private static final String BASE_LINK = "https://app.ticketmaster.com/";

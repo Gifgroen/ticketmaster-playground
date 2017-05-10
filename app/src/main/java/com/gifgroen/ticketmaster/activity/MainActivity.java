@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.gifgroen.ticketmaster.R;
+import com.gifgroen.ticketmaster.model.base.Result;
 import com.gifgroen.ticketmaster.network.Api;
 import com.gifgroen.ticketmaster.network.interfaces.Discovery;
 
@@ -29,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
         service.getEvents()
                 .subscribeOn(Schedulers.io())
-                .subscribe(result -> Log.e(TAG, result.embedded.toString()));
+                .map(Result::getEmbedded)
+                .map(search -> search.getEvents().get(0))
+                .map(Result::getEmbedded)
+                .map(loc -> loc.getAttractions().get(0))
+                .subscribe(attraction -> Log.e(TAG, String.valueOf(attraction)));
 
-        service.getDetails("vv17bZfIGkULDDpa")
-                .subscribeOn(Schedulers.io())
-                .subscribe((event) -> Log.e(TAG, event.toString()));
     }
 }
