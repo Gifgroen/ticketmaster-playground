@@ -30,29 +30,42 @@ ext {
     supportVersion = "25.3.1"
     retrofitVersion = "2.3.0"
 }
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    /* Support libs. */
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    /* Retrofit for networking and Api mapping. */
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
+    /* Rx for reactive controls. */
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
 
+    /* Dagger for smart object construction. */
     compile 'com.google.dagger:dagger:2.10'
     compile 'com.google.dagger:dagger-android:2.10'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     provided 'javax.annotation:jsr250-api:1.0'
 
+    /* Lifecycle for smart component architecture management. */
+    compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
+    compile "android.arch.lifecycle:extensions:1.0.0-alpha1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha1"
+
+    /* Room for SQLite which simplifies persistance and offline. */
+    compile 'android.arch.persistence.room:runtime:1.0.0-alpha1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
+
+    /* Testing. */
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
 }
