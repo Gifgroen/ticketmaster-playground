@@ -1,5 +1,7 @@
 package com.gifgroen.ticketmaster.model.base;
 
+import android.arch.persistence.room.Ignore;
+
 import com.gifgroen.ticketmaster.model.meta.LinkMeta;
 import com.gifgroen.ticketmaster.model.meta.PageMeta;
 import com.google.gson.annotations.SerializedName;
@@ -11,11 +13,16 @@ import java.util.List;
  */
 public class Result<T> {
     @SerializedName("_links")
+    @Ignore
     LinkMeta links;
     @SerializedName("_embedded")
+    @Ignore
     T embedded;
+    @Ignore
     PageMeta page;
+    @Ignore
     ExternalLinks externalLinks;
+    @Ignore
     boolean test;
 
     public T getEmbedded() {

@@ -4,8 +4,8 @@ package com.gifgroen.ticketmaster.model.internal;
  * Created by karsten on 10/05/2017.
  */
 public class Location {
-    double latitude;
-    double longitude;
+    public double latitude;
+    public double longitude;
 
     @Override
     public String toString() {

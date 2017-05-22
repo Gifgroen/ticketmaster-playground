@@ -1,5 +1,9 @@
 package com.gifgroen.ticketmaster.model.data;
 
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.gifgroen.ticketmaster.model.base.Result;
 import com.gifgroen.ticketmaster.model.embedded.EventLocation;
 import com.gifgroen.ticketmaster.model.internal.Dates;
@@ -14,27 +18,31 @@ import java.util.List;
 /**
  * API model class describing a ticketmaster Event.
  */
+@Entity
 public class Event extends Result<EventLocation> {
-    String type;
-    double distance;
-    String units;
-    Location location;
-    String id;
-    String locale;
-    String name;
-    String description;
-    String additionalInfo;
-    String url;
-    List<Image> images;
-    Dates dates;
-    Sales sales;
-    String info;
-    String pleaseNote;
-    List<PriceRange> priceRanges;
-    Promoter promoter;
-    SeatMap seatmap;
-    List<Classification> classifications;
-    Place place;
+    public String type;
+    public double distance;
+    public String units;
+    @Embedded
+    public Location location;
+
+    @PrimaryKey
+    public String id;
+    public String locale;
+    public String name;
+    public String description;
+    public String additionalInfo;
+    public String url;
+//    List<Image> images;
+//    Dates dates;
+//    Sales sales;
+    public String info;
+    public String pleaseNote;
+//    List<PriceRange> priceRanges;
+//    Promoter promoter;
+//    SeatMap seatmap;
+//    List<Classification> classifications;
+//    Place place;
 
     @Override
     public String toString() {
@@ -42,23 +50,23 @@ public class Event extends Result<EventLocation> {
                 "type='" + type + '\'' +
                 ", distance=" + distance +
                 ", units='" + units + '\'' +
-                ", location=" + location +
+//                ", location=" + location +
                 ", id='" + id + '\'' +
                 ", locale='" + locale + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", additionalInfo='" + additionalInfo + '\'' +
                 ", url='" + url + '\'' +
-                ", images=" + images +
-                ", dates=" + dates +
-                ", sales=" + sales +
+//                ", images=" + images +
+//                ", dates=" + dates +
+//                ", sales=" + sales +
                 ", info='" + info + '\'' +
                 ", pleaseNote='" + pleaseNote + '\'' +
-                ", priceRanges=" + priceRanges +
-                ", promoter=" + promoter +
-                ", seatmap=" + seatmap +
-                ", classifications=" + classifications +
-                ", place=" + place +
+//                ", priceRanges=" + priceRanges +
+//                ", promoter=" + promoter +
+//                ", seatmap=" + seatmap +
+//                ", classifications=" + classifications +
+//                ", place=" + place +
                 '}';
     }
 }
