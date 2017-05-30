@@ -1,4 +1,4 @@
-package com.gifgroen.ticketmaster.dependency;
+package com.gifgroen.ticketmaster.dependency.module;
 
 import com.gifgroen.ticketmaster.network.ApiGenerator;
 import com.gifgroen.ticketmaster.network.interfaces.Discovery;
@@ -12,9 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by karsten on 17/05/2017.
- */
 @Module
 public class ApiModule {
 

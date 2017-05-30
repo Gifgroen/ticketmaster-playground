@@ -2,6 +2,7 @@ package com.gifgroen.ticketmaster.model.data;
 
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.gifgroen.ticketmaster.model.base.Result;
@@ -33,8 +34,11 @@ public class Event extends Result<EventLocation> {
     public String description;
     public String additionalInfo;
     public String url;
-//    List<Image> images;
-//    Dates dates;
+
+    @Ignore
+    public List<Image> images;
+
+//    public Dates dates;
 //    Sales sales;
     public String info;
     public String pleaseNote;
@@ -68,5 +72,9 @@ public class Event extends Result<EventLocation> {
 //                ", classifications=" + classifications +
 //                ", place=" + place +
                 '}';
+    }
+
+    public List<Image> getImages() {
+        return images;
     }
 }

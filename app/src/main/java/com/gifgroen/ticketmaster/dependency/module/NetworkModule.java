@@ -1,4 +1,5 @@
-package com.gifgroen.ticketmaster.dependency;
+package com.gifgroen.ticketmaster.dependency.module;
+
 
 import javax.inject.Named;
 
@@ -11,9 +12,6 @@ import okhttp3.Request;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by karsten on 16/05/2017.
- */
 @Module
 public class NetworkModule {
     @Provides
