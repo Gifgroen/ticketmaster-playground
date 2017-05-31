@@ -1,6 +1,7 @@
 package com.gifgroen.ticketmaster.repos;
 
 import android.arch.lifecycle.LiveData;
+import android.support.annotation.NonNull;
 
 import com.gifgroen.ticketmaster.db.EventSearchDatabase;
 import com.gifgroen.ticketmaster.model.base.Result;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 public class EventRepository {
@@ -24,17 +26,23 @@ public class EventRepository {
         mDatabase = db;
     }
 
-    public LiveData<List<Event>> getEvents() {
+    public LiveData<List<Event>> allEvents() {
         refreshEvents();
-        return mDatabase.eventSearchDao().loadAll();
+        return mDatabase.eventSearchDao().selectAll();
+    }
+
+    public Observable<List<Event>> searchEvents(@NonNull final String keyword) {
+        return convertToEvents(mService.searchEvents(keyword));
     }
 
     private void refreshEvents() {
-        mService.getEvents()
-                .map(Result::getEmbedded)
-                .map(EventSearch::getEvents)
+        convertToEvents(mService.getEvents())
                 .flatMapIterable(event -> event)
                 .subscribeOn(Schedulers.io())
                 .subscribe(event -> mDatabase.eventSearchDao().save(event));
+    }
+
+    public Observable<List<Event>> convertToEvents(Observable<Result<EventSearch>> searchResult) {
+        return searchResult.map(Result::getEmbedded).map(EventSearch::getEvents);
     }
 }

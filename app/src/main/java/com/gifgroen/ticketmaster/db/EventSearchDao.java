@@ -15,7 +15,7 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface EventSearchDao {
     @Query("SELECT * from Event")
-    LiveData<List<Event>> loadAll();
+    LiveData<List<Event>> selectAll();
 
     @Insert(onConflict = REPLACE)
     void save(Event event);

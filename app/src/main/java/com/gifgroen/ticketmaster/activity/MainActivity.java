@@ -4,16 +4,19 @@ import android.arch.lifecycle.LifecycleActivity;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.gifgroen.ticketmaster.R;
 import com.gifgroen.ticketmaster.dependency.ComponentRepository;
-import com.gifgroen.ticketmaster.model.data.Event;
 import com.gifgroen.ticketmaster.repos.EventRepository;
 
 import javax.inject.Inject;
 
+import io.reactivex.schedulers.Schedulers;
+
 public class MainActivity extends LifecycleActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     @Inject
     EventRepository mRepository;
 
@@ -23,13 +26,10 @@ public class MainActivity extends LifecycleActivity {
         ViewDataBinding dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ComponentRepository.getAppComponent(getApplicationContext()).inject(this);
 
-        mRepository.getEvents().observe(this, events -> {
-            StringBuilder foo = new StringBuilder();
-            assert events != null;
-            for (Event event : events) {
-                foo.append("Event: ").append(event.name).append("\n").append("----").append("\n");
-            }
-            ((TextView)dataBinding.getRoot().findViewById(R.id.label)).setText(foo.toString());
-        });
+        mRepository.searchEvents("slayer")
+                .flatMapIterable(e -> e)
+                .map(e -> e.name + " -> " + e.location)
+                .subscribeOn(Schedulers.io())
+                .subscribe(string -> Log.e(TAG, string));
     }
 }
